@@ -121,8 +121,9 @@ const TaskForm = () => {
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Task Title Section */}
             <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm">
-              <label className="block text-xl font-medium text-gray-700 mb-3">Task Title</label>
+              <label htmlFor="title" className="block text-xl font-medium text-gray-700 mb-3">Task Title</label>
               <input
+                id="title"
                 type="text"
                 name="title"
                 value={task.title}
@@ -136,8 +137,9 @@ const TaskForm = () => {
             {/* Category and Tenant Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm">
-                <label className="block text-xl font-medium text-gray-700 mb-3">Category</label>
+                <label htmlFor="category" className="block text-xl font-medium text-gray-700 mb-3">Category</label>
                 <select
+                  id="category"
                   name="category"
                   value={task.category}
                   onChange={handleChange}
@@ -150,8 +152,9 @@ const TaskForm = () => {
               </div>
               
               <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm">
-                <label className="block text-xl font-medium text-gray-700 mb-3">Tenant</label>
+                <label htmlFor="tenant" className="block text-xl font-medium text-gray-700 mb-3">Tenant</label>
                 <input
+                  id="tenant"
                   type="text"
                   name="tenant"
                   value={task.tenant}
@@ -169,12 +172,13 @@ const TaskForm = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <label className="block text-xl font-medium text-gray-700 mb-4">
+                  <label htmlFor="impact" className="block text-xl font-medium text-gray-700 mb-4">
                     Impact (1-5): <span className="text-blue-600 font-bold text-2xl ml-2">{task.impact}</span>
                   </label>
                   <div className="flex items-center mb-4">
                     <span className="text-base mr-4">Low</span>
                     <input
+                      id="impact"
                       type="range"
                       name="impact"
                       min="1"
@@ -191,12 +195,13 @@ const TaskForm = () => {
                 </div>
                 
                 <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <label className="block text-xl font-medium text-gray-700 mb-4">
+                  <label htmlFor="urgency" className="block text-xl font-medium text-gray-700 mb-4">
                     Urgency (1-5): <span className="text-red-600 font-bold text-2xl ml-2">{task.urgency}</span>
                   </label>
                   <div className="flex items-center mb-4">
                     <span className="text-base mr-4">Low</span>
                     <input
+                      id="urgency"
                       type="range"
                       name="urgency"
                       min="1"
@@ -217,8 +222,9 @@ const TaskForm = () => {
             {/* Status and Date Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm">
-                <label className="block text-xl font-medium text-gray-700 mb-3">Status</label>
+                <label htmlFor="status" className="block text-xl font-medium text-gray-700 mb-3">Status</label>
                 <select
+                  id="status"
                   name="status"
                   value={task.status}
                   onChange={handleChange}
@@ -231,8 +237,9 @@ const TaskForm = () => {
               </div>
               
               <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm">
-                <label className="block text-xl font-medium text-gray-700 mb-3">Week Of</label>
+                <label htmlFor="weekOf" className="block text-xl font-medium text-gray-700 mb-3">Week Of</label>
                 <input
+                  id="weekOf"
                   type="date"
                   name="weekOf"
                   value={task.weekOf}
@@ -245,8 +252,9 @@ const TaskForm = () => {
             
             {/* Notes Section */}
             <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm">
-              <label className="block text-xl font-medium text-gray-700 mb-3">Notes</label>
+              <label htmlFor="notes" className="block text-xl font-medium text-gray-700 mb-3">Notes</label>
               <textarea
+                id="notes"
                 name="notes"
                 value={task.notes || ''}
                 onChange={handleChange}
