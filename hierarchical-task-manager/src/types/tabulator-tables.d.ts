@@ -1,0 +1,162 @@
+declare module 'tabulator-tables' {
+  export class TabulatorFull {
+    constructor(element: HTMLElement | string, options?: any);
+    
+    // Core methods
+    setData(data: any[]): Promise<void>;
+    getData(activeOnly?: boolean): any[];
+    getRows(activeOnly?: boolean): RowComponent[];
+    getRow(index: number): RowComponent;
+    getRowFromPosition(position: number, activeOnly?: boolean): RowComponent;
+    getRowFromDataObject(data: any): RowComponent;
+    getRowIndex(row: RowComponent): number;
+    getRowPosition(row: RowComponent, activeOnly?: boolean): number;
+    getSelectedRows(): RowComponent[];
+    getSelectedData(): any[];
+    searchRows(field: string, type: string, value: any): RowComponent[];
+    searchData(field: string, type: string, value: any): any[];
+    getFilters(includeHeaderFilters?: boolean): any[];
+    setFilter(field: string, type: string, value: any): void;
+    addFilter(field: string, type: string, value: any): void;
+    getHeaderFilters(): any[];
+    setHeaderFilterValue(field: string, value: any): void;
+    getHeaderFilterValue(field: string): any;
+    removeFilter(field?: string, type?: string, value?: any): void;
+    clearFilter(includeHeaderFilters?: boolean): void;
+    clearHeaderFilter(): void;
+    selectRow(rows?: RowComponent[] | RowComponent | true): void;
+    deselectRow(rows?: RowComponent[] | RowComponent): void;
+    toggleSelectRow(row: RowComponent): void;
+    getSelectedRows(): RowComponent[];
+    getSelectedData(): any[];
+    redraw(force?: boolean): void;
+    updateData(data: any[]): Promise<void>;
+    updateOrAddData(data: any[]): Promise<RowComponent[]>;
+    addData(data: any[], addToTop?: boolean): Promise<RowComponent[]>;
+    updateOrAddRow(row: RowComponent | number, data: any): Promise<RowComponent>;
+    updateRow(row: RowComponent | number, data: any): Promise<RowComponent>;
+    addRow(data: any, addToTop?: boolean, index?: number): Promise<RowComponent>;
+    moveRow(fromRow: RowComponent, toRow: RowComponent, after?: boolean): void;
+    clearData(): void;
+    getHtml(rowRangeSelector?: string, style?: boolean, config?: any): string;
+    print(rowRangeSelector?: string, style?: boolean, config?: any): void;
+    getAjaxUrl(): string;
+    replaceData(data: any[] | string, params?: any, config?: any): Promise<void>;
+    setPage(page: number | string): Promise<void>;
+    setPageSize(size: number): void;
+    getPageSize(): number;
+    previousPage(): Promise<void>;
+    nextPage(): Promise<void>;
+    getPage(): number;
+    getPageMax(): number;
+    setSort(sortList: any[] | string, dir?: string): void;
+    getSorters(): any[];
+    clearSort(): void;
+    setGroupBy(groups: string | ((data: any) => any) | Array<string | ((data: any) => any)>): void;
+    setGroupStartOpen(value: boolean | ((value: any, count: number, data: any, group: any) => boolean)): void;
+    setGroupHeader(value: ((value: any, count: number, data: any, group: any) => string) | Array<(value: any, count: number, data: any, group: any) => string>): void;
+    getGroups(): any[];
+    getGroupedData(activeOnly?: boolean): any[];
+    getCalcResults(): any;
+    recalc(): void;
+    navigatePrev(): boolean;
+    navigateNext(): boolean;
+    navigateLeft(): boolean;
+    navigateRight(): boolean;
+    navigateUp(): boolean;
+    navigateDown(): boolean;
+    getElement(): HTMLElement;
+    on(event: string, callback: Function): void;
+    off(event: string, callback?: Function): void;
+    alert(message: string, style?: string): void;
+    clearAlert(): void;
+    destroy(): void;
+    setHeight(height: number | string): void;
+    setColumns(definitions: any[]): void;
+    getColumns(includeColumnGroups?: boolean): ColumnComponent[];
+    getColumn(field: string): ColumnComponent;
+    getColumnDefinitions(): any[];
+    getColumnLayout(): any[];
+    setColumnLayout(layout: any[]): void;
+    showColumn(field: string): void;
+    hideColumn(field: string): void;
+    toggleColumn(field: string): void;
+    addColumn(definition: any, before?: boolean, field?: string): Promise<void>;
+    deleteColumn(field: string): Promise<void>;
+    moveColumn(fromField: string, toField: string, after?: boolean): void;
+    scrollToColumn(field: string, position?: string, ifVisible?: boolean): Promise<void>;
+  }
+
+  export interface RowComponent {
+    getData(): any;
+    getElement(): HTMLElement;
+    getTable(): TabulatorFull;
+    getNextRow(): RowComponent | false;
+    getPrevRow(): RowComponent | false;
+    getCells(): CellComponent[];
+    getCell(column: string | ColumnComponent): CellComponent;
+    getIndex(): number;
+    getPosition(activeOnly?: boolean): number;
+    delete(): Promise<void>;
+    scrollTo(): Promise<void>;
+    pageTo(): Promise<void>;
+    move(toRow: RowComponent, after?: boolean): void;
+    update(data: any): Promise<void>;
+    select(): void;
+    deselect(): void;
+    toggleSelect(): void;
+    isSelected(): boolean;
+    normalizeHeight(): void;
+    reformat(): void;
+    freeze(): void;
+    unfreeze(): void;
+    treeExpand(): Promise<void>;
+    treeCollapse(): Promise<void>;
+    treeToggle(): Promise<void>;
+    getTreeParent(): RowComponent | false;
+    getTreeChildren(): RowComponent[];
+    addTreeChild(data: any, top?: boolean, index?: number): Promise<RowComponent>;
+  }
+
+  export interface CellComponent {
+    getValue(): any;
+    getOldValue(): any;
+    getElement(): HTMLElement;
+    getRow(): RowComponent;
+    getColumn(): ColumnComponent;
+    getData(): any;
+    getField(): string;
+    getTable(): TabulatorFull;
+    setValue(value: any, mutate?: boolean): void;
+    checkHeight(): void;
+    nav(): any;
+    getIndex(): number;
+    edit(ignoreEditable?: boolean): void;
+    cancelEdit(): void;
+    isEdited(): boolean;
+  }
+
+  export interface ColumnComponent {
+    getElement(): HTMLElement;
+    getDefinition(): any;
+    getField(): string;
+    getCells(): CellComponent[];
+    getNextColumn(): ColumnComponent | false;
+    getPrevColumn(): ColumnComponent | false;
+    move(toField: string, after?: boolean): void;
+    getSubColumns(): ColumnComponent[];
+    getParentColumn(): ColumnComponent | false;
+    headerFilterFocus(): void;
+    setHeaderFilterValue(value: any): void;
+    reloadHeaderFilter(): void;
+    getHeaderFilterValue(): any;
+    updateDefinition(definition: any): Promise<void>;
+    getWidth(): number;
+    setWidth(width: number | true): void;
+    show(): void;
+    hide(): void;
+    toggle(): void;
+    delete(): Promise<void>;
+    scrollTo(): Promise<void>;
+  }
+}
